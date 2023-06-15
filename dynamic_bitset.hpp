@@ -42,7 +42,7 @@ public:
   friend std::ostream &operator<<(std::ostream &os,
                                   const dynamic_bitset::reference &bit);
   dynamic_bitset operator=(const std::string &bitstring);
-  dynamic_bitset operator=(const unsigned int);
+  template <typename T> dynamic_bitset operator=(T);
   dynamic_bitset operator~() const;
   dynamic_bitset operator&(const dynamic_bitset &bitset) const;
   dynamic_bitset operator|(const dynamic_bitset &bitset) const;

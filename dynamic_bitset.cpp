@@ -95,11 +95,19 @@ dynamic_bitset dynamic_bitset::operator=(const std::string &bitstring) {
   return *this;
 }
 
-dynamic_bitset dynamic_bitset::operator=(const unsigned int integer) {
-  resize(sizeof(integer) * 8);
-  memcpy(m_bits.data(), &integer, sizeof(integer));
+template <typename T>
+dynamic_bitset dynamic_bitset::operator=(T value) {
+  resize(sizeof(value) * 8);
+  memcpy(m_bits.data(), &value, sizeof(value));
   return *this;
 }
+template dynamic_bitset dynamic_bitset::operator=<int>(int);
+template dynamic_bitset dynamic_bitset::operator=<unsigned int>(unsigned int);
+template dynamic_bitset dynamic_bitset::operator=<long>(long);
+template dynamic_bitset dynamic_bitset::operator=<unsigned long>(unsigned long);
+template dynamic_bitset dynamic_bitset::operator=<long long>(long long);
+template dynamic_bitset dynamic_bitset::operator=<unsigned long long>(
+    unsigned long long);
 
 bool dynamic_bitset::operator==(const dynamic_bitset &bitset) const {
   return m_size == bitset.m_size &&
